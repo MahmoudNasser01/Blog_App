@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    {{post.title}}
+
+    {% for comment in comments  %}
+        <h1>name : {{comment.author}}</h1>
+        <p>Content : {{ comment.content }}</p>
+    {% endfor %}
+<form method="post">
+{% csrf_token %}
+
+    {{ form }}
+    <input type="submit" value="Add Comment">
+
+</form>
+
+
+{% endblock %}

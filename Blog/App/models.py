@@ -2,6 +2,7 @@ from django.db import models
 
 from django.contrib.auth.models import User
 from datetime import datetime
+from django.urls import reverse
 
 
 
@@ -12,12 +13,13 @@ class Post(models.Model):
         ('PANNED', 'PANNED'),
     )
 
-    title = models.CharField(max_length=200)
-    content = models.TextField(max_length=1600)
-    img = models.ImageField(upload_to='images')
-    publish_date = models.DateTimeField(default=datetime.now)
-    status = models.CharField(max_length=50, choices=STATUS, default='PUBLISHED')
+    title = models.CharField(max_length=200, null=True)
+    content = models.TextField(max_length=1600, null=True)
+    photo = models.ImageField(upload_to='', blank=False, null=True)
+    publish_date = models.DateTimeField(default=datetime.now, null=True)
+    status = models.CharField(max_length=50, choices=STATUS, default='PUBLISHED', null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    slug = models.SlugField(null=True)  # new
 
 
     def __str__(self):

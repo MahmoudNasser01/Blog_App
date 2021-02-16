@@ -3,5 +3,11 @@
 
 {% block content %}
 
-    <h1>all The posts listed here</h1>
+    {% for post in posts %}
+
+        <a href={{ post.slug }}> {{post.title}} </a>
+
+    {% endfor %}
+
+
 {% endblock %}
