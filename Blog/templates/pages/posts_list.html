@@ -1,11 +1,70 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
 
     {% for post in posts %}
 
-        <a href={{ post.slug }}> {{post.title}} </a>
+<div class    ="row container d-flex justify-content-center posts-list">
+    <div class="col">
+
+        <div class ="card m-auto" style="width: 70%;">
+
+            <img class  ="card-img-top" src="{{ post.photo.url }}" alt="Card image cap">
+
+            <div class  ="card-body text-dark">
+
+                <h5 class ="card-title font-weight-bold mb-5 text-primary">{{ post.title }}</h5>
+
+                <p class  ="card-text" id="less-text">{{ post.content|truncatewords:"50"}}
+                <button onClick="readMore()" class="btn-readMore"> Read More </button>
+                </p>
+                <p class  ="card-text hide" id="full-text">{{ post.content}}
+                <button onclick="readLess()" class="btn-readMore"> Read Less </button>
+                </p>
+
+                <a href   ="#" class="btn view-conver">view Conversations</a>
+
+
+            </div>
+
+            <div class="status-bar">
+                <div class="status-bar-container">
+                    <i class="far fa-comment-dots fa-2x mx-2 px-2 my-1"><span>206</span></i>
+
+                </div>
+                <div class="status-bar-container">
+                     <i class="far fa-heart fa-2x mx-2 px-2 my-1"><span>18</span></i>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+        <script>
+
+        read = true;
+        function readMore(){
+            console.log('reead More')
+            document.getElementById("less-text").classList.add('hide');
+            document.getElementById("full-text").classList.remove('hide');
+        }
+        function readLess(){
+            document.getElementById("full-text").classList.add('hide');
+            document.getElementById("less-text").classList.remove('hide');
+        }
+
+        </script>
+
+
+
+
 
     {% endfor %}
 

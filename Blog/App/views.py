@@ -1,6 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Comment
-
 from .forms import AddPostForm, AddComment
 
 
@@ -11,7 +10,6 @@ def home(request):
 
 def add_post(request):
     form = AddPostForm()
-
     if request.method == 'POST':
         form = AddPostForm(request.POST, request.FILES)
         if form.is_valid():
@@ -23,7 +21,7 @@ def add_post(request):
     return render(request, 'pages/add_post.html', context)
 
 def post_list(request):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(publish=True)
     context = {
         'posts': posts
     }
@@ -31,9 +29,19 @@ def post_list(request):
 
 
 
-def post_detials(request, slug):
-    post = Post.objects.get(slug=slug)
+def manage_posts(request):
+    posts = Post.objects.all()
 
+    context = {
+        'posts' : posts
+    }
+    return render(request, 'pages/manage_posts.html', context)
+
+
+
+
+def post_detials(request, slug):
+    post = get_object_or_404(Post, slug=slug)
     form = AddComment()
     if request.method == 'POST':
         form = AddComment(request.POST)
@@ -51,3 +59,23 @@ def post_detials(request, slug):
     }
 
     return render(request, 'pages/post_detials.html', context)
+
+
+def edit_post(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    form = AddPostForm(instance=post)
+    if request.method == 'POST':
+        form = AddPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    context = {
+        'form': form
+    }
+    return render(request, 'pages/edit_post.html', context)
+
+
+def delete_post(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    post.delete()
+    return redirect('manage_posts')

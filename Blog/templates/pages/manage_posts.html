@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    {% for post in posts %}
+    <div class="row container">
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+        <img src="{{ post.photo.url }}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{post.title}}</h5>
+        <p class="card-text text-dark">{{ post.content }}</p>
+        <div class="controls">
+            <button class="btn btn-primary"><a href="{% url 'edit_post' post.slug %}">edit</a></button>
+            <button class="btn btn-danger"><a href="{% url 'delete_post' post.slug %}">delete</a></button>
+            <label>Status</label>
+            <input type="checkbox" label="Status" checked={{ post.publish }} id="status-btn">
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+
+</script>
+{% endfor %}
+
+{% endblock %}
