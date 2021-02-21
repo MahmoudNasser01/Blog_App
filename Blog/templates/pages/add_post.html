@@ -1,17 +1,55 @@
 
 {% extends 'base.html' %}
 
+{% load static %}
+
 
 {% block content %}
 
-    <form method='POST' action="" enctype="multipart/form-data">
+    <form method='POST' action="" enctype="multipart/form-data" class="form-group form-body text-center">
        {% csrf_token %}
-    {{ form }}
 
-    <input type="submit" value="App Post">
+
+
+          <p>
+            {{ form.title }}
+            </p>
+            <p>
+                {{ form.content }}
+            </p>
+
+            <p>
+                {{ form.photo }}
+            </p>
+
+            <p>
+                {{ form.slug }}
+            </p>
+
+            <p>
+                {{ form.author }}
+            </p>
+
+            <p>
+                {{ form.publish_date }}
+            </p>
+
+            <p class="publish-field">
+                نشر:
+                {{ form.publish }}
+            </p>
+
+
+
+    <input type="submit" value="App Post" class="btn btn-primary">
     </form>
 
-
 {% endblock %}
+
+
+<!----
+
+
+-->
 
 

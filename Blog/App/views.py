@@ -15,6 +15,8 @@ def add_post(request):
         if form.is_valid():
             form.save()
             return redirect('post_list')
+        else:
+            print('Error in the post')
     context = {
         'form': form
     }
@@ -77,6 +79,8 @@ def edit_post(request, slug):
 
 
 def delete_post(request, slug):
+
     post = get_object_or_404(Post, slug=slug)
     post.delete()
     return redirect('manage_posts')
+
