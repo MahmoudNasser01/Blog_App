@@ -3,29 +3,48 @@
 
 {% block content %}
 
+    <div class="row container-fluid d-flex justify-content-center">
     {% for post in posts %}
-    <div class="row container">
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-        <img src="{{ post.photo.url }}" class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">{{post.title}}</h5>
-        <p class="card-text text-dark">{{ post.content }}</p>
-        <div class="controls">
-            <button class="btn btn-primary"><a href="{% url 'edit_post' post.slug %}">edit</a></button>
-            <button class="btn btn-danger"><a href="{% url 'delete_post' post.slug %}">delete</a></button>
-            <label>Status</label>
-            <input type="checkbox" label="Status" checked={{ post.publish }} id="status-btn">
-        </div>
-    </div>
+
+
+
+            <div class="col-md-6 my-4">
+
+
+                <div class ="card m-auto" style="width: 60%;">
+
+
+                    <img class  ="card-img-top" style="height:300px"src="{{ post.photo.url }}" alt="Card image cap">
+
+
+
+                    <div class  ="card-body text-dark">
+                        <h5 class ="card-title font-weight-bold mb-5 text-primary">{{ post.title }}</h5>
+                        <p class  ="card-text" id="less-text">{{ post.content|truncatewords:"50"}}</p>
+
+                        <button class="btn" id="manage-posts-edit-btn"><a class="linkEdit" href="{% url 'edit_post' post.slug %}">edit</a></button>
+
+                        <button class="btn" id="manage-posts-delete-btn"><a class="linkDelete" href="{% url 'delete_post' post.slug %}">Delete</a></button>
+
+                        <div class="post-status">
+                                {% if post.publish %}
+                                <div class="published-status">Published</div>
+                                    {% else %}
+                                    <div class="panned-status">Panned</div>
+                                {% endif %}
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
             </div>
-        </div>
-    </div>
-
-<script>
 
 
-</script>
 {% endfor %}
 
+       </div>
 {% endblock %}

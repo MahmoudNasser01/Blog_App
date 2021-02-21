@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from django.db import models
 from .models import Post, Comment
 
 
@@ -13,3 +14,5 @@ class AddComment(ModelForm):
     class  Meta:
         model = Comment
         fields = '__all__'
+
+

@@ -21,7 +21,7 @@ def add_post(request):
     return render(request, 'pages/add_post.html', context)
 
 def post_list(request):
-    posts = Post.objects.filter(publish=True)
+    posts = Post.objects.filter(publish=True).order_by('-publish_date')
     context = {
         'posts': posts
     }
@@ -65,8 +65,9 @@ def edit_post(request, slug):
     post = get_object_or_404(Post, slug=slug)
     form = AddPostForm(instance=post)
     if request.method == 'POST':
-        form = AddPostForm(request.POST, request.FILES)
+        form = AddPostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
+            post.delete()
             form.save()
             return redirect('home')
     context = {

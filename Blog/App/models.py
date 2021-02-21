@@ -15,6 +15,7 @@ class Post(models.Model):
     publish = models.BooleanField(default=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField(null=True,unique=True)
+    #post_like = models.ManyToManyField('Post', related_name='likes')
 
 
     def __str__(self):

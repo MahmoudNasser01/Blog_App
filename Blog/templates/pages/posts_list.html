@@ -5,10 +5,10 @@
 
     {% for post in posts %}
 
-<div class    ="row container d-flex justify-content-center posts-list">
+<div class    ="row container-fluid d-flex justify-content-center posts-list my-4">
     <div class="col">
 
-        <div class ="card m-auto" style="width: 70%;">
+        <div class ="card m-auto" style="width: 60%;">
 
             <img class  ="card-img-top" src="{{ post.photo.url }}" alt="Card image cap">
 
@@ -23,19 +23,25 @@
                 <button onclick="readLess()" class="btn-readMore"> Read Less </button>
                 </p>
 
-                <a href   ="#" class="btn view-conver">view Conversations</a>
+                <a href   ="#" class="btn view-conver">عرض المناقشات</a>
 
 
             </div>
 
             <div class="status-bar">
                 <div class="status-bar-container">
-                    <i class="far fa-comment-dots fa-2x mx-2 px-2 my-1"><span>206</span></i>
+                    <i class="far fa-comment-dots fa-1x mx-2 px-2 my-1"><span>206</span></i>
 
                 </div>
                 <div class="status-bar-container">
-                     <i class="far fa-heart fa-2x mx-2 px-2 my-1"><span>18</span></i>
+                     <i class="far fa-heart fa-1x mx-2 px-2 my-1"><span>18</span></i>
                 </div>
+
+                <div class="status-bar-container">
+                     <i class="far fa-eye fa-1x mx-2 px-2 my-1"><span>22</span></i>
+                </div>
+
+
 
 
             </div>
@@ -50,11 +56,13 @@
         <script>
 
         read = true;
+
         function readMore(){
             console.log('reead More')
             document.getElementById("less-text").classList.add('hide');
             document.getElementById("full-text").classList.remove('hide');
         }
+
         function readLess(){
             document.getElementById("full-text").classList.add('hide');
             document.getElementById("less-text").classList.remove('hide');
