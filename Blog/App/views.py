@@ -5,7 +5,13 @@ from .forms import AddPostForm, AddComment
 
 
 def home(request):
-    return render(request, 'pages/home.html')
+    #   Render only the active posts and sort them by the most recent post and we set the limit count of the posts [:n]
+    posts = Post.objects.all().filter(publish=True).order_by('-publish_date')[:5]
+
+    context = {
+        'posts': posts
+    }
+    return render(request, 'pages/home.html', context)
 
 
 def add_post(request):

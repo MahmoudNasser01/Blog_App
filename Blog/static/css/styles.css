@@ -20,7 +20,7 @@ body {
     color: var(--pure);
 }
 
-
+/*************************** Start navbar *****************************************/
 
 .nav-wrapper {
     display: flex;
@@ -225,7 +225,11 @@ nav ul.dropdown-list {
 
 }
 
+/*******************End Nav Bar***************************************************/
 
+
+
+/**Start Post Card *********************/
 .status-bar{
     width:100%;
 
@@ -263,6 +267,9 @@ nav ul.dropdown-list {
     color:#447e9b;
     font-weight:bold;
 }
+
+
+
 
 /********************* Start manage Posts View *************/
 
@@ -308,6 +315,12 @@ nav ul.dropdown-list {
 
 
 
+/********************* End manage Posts View *************/
+
+
+
+
+
 /********************* Start Add Post Section *****************************/
 
 .title-field,.content-field, .slug-field, #id_author {
@@ -323,7 +336,6 @@ nav ul.dropdown-list {
     border:1px solid indigo;
 }
 
-
 #id_photo input.upload{
     color:#fff;
 }
@@ -337,9 +349,6 @@ nav ul.dropdown-list {
     color:greenyellow;
     padding:10px
 }
-
-
-
 
 
 /**********************8 End Add Post Section ***************************/

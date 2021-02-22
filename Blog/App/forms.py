@@ -6,6 +6,9 @@ from .models import Post, Comment
 
 
 class AddPostForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(AddPostForm, self).__init__(*args, **kwargs)
+        self.fields['content'].strip = False
     class Meta:
         model = Post
         fields = '__all__'

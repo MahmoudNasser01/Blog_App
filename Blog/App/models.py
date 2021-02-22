@@ -6,6 +6,9 @@ from django.urls import reverse
 
 
 
+
+#   Post Model
+
 class Post(models.Model):
     title = models.CharField(max_length=200, null=True)
     content = models.TextField(max_length=1600, null=True)
